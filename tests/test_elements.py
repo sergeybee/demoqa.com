@@ -1,10 +1,13 @@
 import time
-import pytest
-from config import URL
-
-from pages.base_page import BasePage
+from config import URL_TEXT_BOX
+from pages.elements_page import TextBoxPage
 
 
-def test_a(driver):
-    page = BasePage(driver, URL)
-    page.open()
+class TestElements:
+    class TestTextBox():
+        def test_text_box(self, driver):
+            text_box_page = TextBoxPage(driver, URL_TEXT_BOX)
+            text_box_page.open()
+            text_box_page.fill_all_fields()
+            output_name, output_email, output_current_address, output_permanent_adress = text_box_page.check_field_form()
+            time.sleep(5)
