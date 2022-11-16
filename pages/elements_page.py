@@ -13,8 +13,8 @@ class TextBoxPage(BasePage):
         self.element_is_visible(self.locators.SUBMIT).click()
 
     def check_field_form(self):
-        full_name = self.element_is_visible(self.locators.CREATED_FULL_NAME).text
-        email = self.element_is_visible(self.locators.CREATED_EMAIL).text
-        current_adress = self.element_is_visible(self.locators.CREATED_CURRENT_ADDRESS).text
-        permanent_adress = self.element_is_visible(self.locators.CREATED_PERMANENT_ADDRESS).text
+        full_name = self.element_is_visible(self.locators.CREATED_FULL_NAME).text.split(':')[1]
+        email = self.element_is_visible(self.locators.CREATED_EMAIL).text.split(':')[1]
+        current_adress = self.element_is_visible(self.locators.CREATED_CURRENT_ADDRESS).text.split(':')[1]
+        permanent_adress = self.element_is_visible(self.locators.CREATED_PERMANENT_ADDRESS).text.split(':')[1]
         return full_name, email, current_adress, permanent_adress
