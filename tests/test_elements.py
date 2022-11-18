@@ -1,6 +1,6 @@
 import time
-from config import URL_PAGE_TEXT_BOX, URL_PAGE_CHECK_BOX
-from pages.elements_page import TextBoxPage, CheckBox
+from config import URL_PAGE_TEXT_BOX, URL_PAGE_CHECK_BOX, URL_PAGE_RADIO_BUTTON
+from pages.elements_page import TextBoxPage, CheckBox, RadioButton
 
 
 class TestElements:
@@ -18,10 +18,27 @@ class TestElements:
 
     class TestCheckBox:
         def test_check_box(self, driver):
-            check_box = CheckBox(driver, URL_PAGE_CHECK_BOX)
-            check_box.open()
-            check_box.open_full_list()
-            check_box.click_random_checkbox()
-            input_checkbox = check_box.get_checked_checkboxes()
-            output_result = check_box.get_output_result()
+            check_box_page = CheckBox(driver, URL_PAGE_CHECK_BOX)
+            check_box_page.open()
+            check_box_page.open_full_list()
+            check_box_page.click_random_checkbox()
+            input_checkbox = check_box_page.get_checked_checkboxes()
+            output_result = check_box_page.get_output_result()
             assert input_checkbox == output_result, 'Данные не совпадают'
+
+    class TestRadioButton:
+        def test_radio_button(self, driver):
+            radio_btn_page = RadioButton(driver, URL_PAGE_RADIO_BUTTON)
+            radio_btn_page.open()
+            radio_btn_page.clicked_on_the_radio_btn('yes')
+            out_yes = radio_btn_page.get_output_result()
+            radio_btn_page.clicked_on_the_radio_btn('impressive')
+            out_impressive = radio_btn_page.get_output_result()
+            radio_btn_page.clicked_on_the_radio_btn('no')
+            out_no = radio_btn_page.get_output_result()
+            assert out_yes == 'Yes', "'Yes' have not been selected"
+            assert out_impressive == 'Impressive', "'Impressive' have not been selected"
+            assert out_no == 'No', "'No' have not been selected"
+            time.sleep(3)
+
+
