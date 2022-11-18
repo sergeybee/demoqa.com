@@ -20,8 +20,8 @@ class TestElements:
         def test_check_box(self, driver):
             check_box = CheckBox(driver, URL_PAGE_CHECK_BOX)
             check_box.open()
-
             check_box.open_full_list()
             check_box.click_random_checkbox()
-            check_box.get_checked_checkboxes()
-            time.sleep(5)
+            input_checkbox = check_box.get_checked_checkboxes()
+            output_result = check_box.get_output_result()
+            assert input_checkbox == output_result, 'Данные не совпадают'
