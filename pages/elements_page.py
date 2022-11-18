@@ -54,8 +54,18 @@ class CheckBox(BasePage):
 
     def get_checked_checkboxes(self):
         checked_list = self.elements_are_present(self.locators.CHECKED_ITEMS)
-        data = []
+        data_checked = []
 
         for box in checked_list:
             title_item = box.find_element(By.XPATH, self.locators.TITLE_ITEM)
-            print(title_item.text)
+            data_checked.append(title_item.text)
+        return str(data_checked).replace(' ', '').replace('.doc', '').lower()
+
+    def get_output_result(self):
+        result_list = self.elements_are_present(self.locators.OUTPUT_RESULT)
+        data_result = []
+
+        for item in result_list:
+            data_result.append(item.text)
+        return str(data_result).lower().replace(' ', '')
+
