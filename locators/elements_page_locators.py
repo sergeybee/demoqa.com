@@ -30,3 +30,14 @@ class RadioButtonLocators:
     NO_RADIO = (By.CSS_SELECTOR, "label[class*='custom-control'][for='noRadio']")
     RADIO_BUTTONS = (By.CSS_SELECTOR, "label[class*='custom-control']")
     OUTPUT_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
+
+
+class WebTableLocators:
+    ADD_BTN_PERSON = (By.XPATH, "//button[@id='addNewRecordButton']")
+    FIRST_NAME = (By.XPATH, "//input[@id='firstName']")
+    LAST_NAME = (By.XPATH, "//input[@id='lastName']")
+    EMAIL = (By.XPATH, "//input[@id='userEmail']")
+    AGE = (By.XPATH, "//input[@id='age']")
+    SALARY = (By.XPATH, "//input[@id='salary']")
+    DEPARTMENT = (By.XPATH, "//input[@id='department']")
+    SUBMIT_BTN = (By.XPATH, "//button[@id='submit']")
