@@ -90,7 +90,6 @@ class WebTablePage(BasePage):
     locators = WebTableLocators()
 
     def add_new_person(self):
-
         person_add = next(generated_person())
 
         first_name = person_add.first_name
@@ -109,4 +108,12 @@ class WebTablePage(BasePage):
         self.element_is_visible(self.locators.DEPARTMENT).send_keys(department)
         self.element_is_visible(self.locators.SUBMIT_BTN).click()
 
-        return first_name, last_name, email, age, salary, department
+        return [first_name, last_name, str(age), email, str(salary), department]
+
+    def check_added_new_person(self):
+        data = []
+        persons = self.elements_are_visible(self.locators.PERSON_LIST)
+        for person in persons:
+
+            data.append(person.text.splitlines())
+        return data
