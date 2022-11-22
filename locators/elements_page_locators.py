@@ -33,6 +33,7 @@ class RadioButtonLocators:
 
 
 class WebTableLocators:
+    # add new person
     ADD_BTN_PERSON = (By.XPATH, "//button[@id='addNewRecordButton']")
     FIRST_NAME = (By.XPATH, "//input[@id='firstName']")
     LAST_NAME = (By.XPATH, "//input[@id='lastName']")
@@ -41,3 +42,7 @@ class WebTableLocators:
     SALARY = (By.XPATH, "//input[@id='salary']")
     DEPARTMENT = (By.XPATH, "//input[@id='department']")
     SUBMIT_BTN = (By.XPATH, "//button[@id='submit']")
+
+    # check new person
+    PERSON_LIST = (By.CSS_SELECTOR, "div[class='rt-tbody'] .rt-tr-group")
+
