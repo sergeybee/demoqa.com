@@ -3,7 +3,8 @@ import random
 from selenium.webdriver.common.by import By
 
 from generator.generator import generated_person
-from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators
+from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators, \
+    WebTableLocators
 from pages.base_page import BasePage
 
 
@@ -33,7 +34,7 @@ class TextBoxPage(BasePage):
         return full_name, email, current_adress, permanent_adress
 
 
-class CheckBox(BasePage):
+class CheckBoxPage(BasePage):
     locators = CheckBoxPageLocators()
 
     def open_full_list(self):
@@ -44,7 +45,7 @@ class CheckBox(BasePage):
         count = len(item_list)
 
         while count != 0:
-            item = item_list[(random.randint(1, len(item_list)-1))]
+            item = item_list[(random.randint(1, len(item_list) - 1))]
             if count > 0:
                 self.go_to_element(item)
                 item.click()
@@ -70,17 +71,42 @@ class CheckBox(BasePage):
         return str(data_result).lower().replace(' ', '')
 
 
-class RadioButton(BasePage):
+class RadioButtonPage(BasePage):
     locators = RadioButtonLocators()
 
     def clicked_on_the_radio_btn(self, choice):
         dict_radio_btn = {
-                        'yes': self.locators.YES_RADIO,
-                        'impressive': self.locators.IMPRESSIVE_RADIO,
-                        'no': self.locators.NO_RADIO
-                        }
+            'yes': self.locators.YES_RADIO,
+            'impressive': self.locators.IMPRESSIVE_RADIO,
+            'no': self.locators.NO_RADIO
+        }
         self.element_is_visible(dict_radio_btn[choice]).click()
-
 
     def get_output_result(self):
         return self.element_is_present(self.locators.OUTPUT_RESULT).text
+
+
+class WebTablePage(BasePage):
+    locators = WebTableLocators()
+
+    def add_new_person(self):
+
+        person_add = next(generated_person())
+
+        first_name = person_add.first_name
+        last_name = person_add.last_name
+        email = person_add.email
+        age = person_add.age
+        salary = person_add.salary
+        department = person_add.department
+
+        self.element_is_visible(self.locators.ADD_BTN_PERSON).click()
+        self.element_is_visible(self.locators.FIRST_NAME).send_keys(first_name)
+        self.element_is_visible(self.locators.LAST_NAME).send_keys(last_name)
+        self.element_is_visible(self.locators.EMAIL).send_keys(email)
+        self.element_is_visible(self.locators.AGE).send_keys(age)
+        self.element_is_visible(self.locators.SALARY).send_keys(salary)
+        self.element_is_visible(self.locators.DEPARTMENT).send_keys(department)
+        self.element_is_visible(self.locators.SUBMIT_BTN).click()
+
+        return first_name, last_name, email, age, salary, department
