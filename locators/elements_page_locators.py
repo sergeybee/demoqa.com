@@ -43,6 +43,14 @@ class WebTableLocators:
     DEPARTMENT = (By.XPATH, "//input[@id='department']")
     SUBMIT_BTN = (By.XPATH, "//button[@id='submit']")
 
+    # search box
+    SEARCH_FIELD = (By.XPATH, "//input[@id='searchBox']")
+
     # check new person
     PERSON_LIST = (By.CSS_SELECTOR, "div[class='rt-tbody'] .rt-tr-group")
 
+    # edit person
+    EDIT_RECORD_BUTTONT = (By.XPATH, "//span[@title='Edit']")
+
+    # delete person
+    DELETE_RECORD_BUTTON = (By.XPATH, "//span[@title='Delete']")
