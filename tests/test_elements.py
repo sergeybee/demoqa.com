@@ -1,3 +1,4 @@
+import random
 import time
 from config import URL_PAGE_TEXT_BOX, URL_PAGE_CHECK_BOX, URL_PAGE_RADIO_BUTTON, URL_WEB_TABLE_PAGE
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage
@@ -47,6 +48,13 @@ class TestElements:
             web_table_page.open()
             new_person = web_table_page.add_new_person()
             table_result = web_table_page.check_added_new_person()
-            assert new_person in table_result, 'Данные не совпадают'
+            assert new_person in table_result, 'Персона не найдена в таблице. Не добавлена'
 
+        def test_web_table_search_person(self, driver):
+            web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
+            web_table_page.open()
+            keyword_search = web_table_page.add_new_person()[random.randint(0, 5)]
+            web_table_page.search_person(keyword_search)
+            search_result = web_table_page.check_search_person()
+            assert keyword_search in search_result, 'Искомая персона не найдена в таблице'
 
