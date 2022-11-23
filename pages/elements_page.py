@@ -125,3 +125,12 @@ class WebTablePage(BasePage):
         delete_button = self.element_is_present(self.locators.DELETE_RECORD_BUTTON)
         row = delete_button.find_element_by_xpath(self.locators.ROW_PARENT)
         return row.text.splitlines()
+
+    def update_person_info(self):
+        person_info = next(generated_person())
+        first_name = person_info.first_name
+        self.element_is_visible(self.locators.EDIT_RECORD_BUTTONT).click()
+        self.element_is_visible(self.locators.FIRST_NAME).clear()
+        self.element_is_visible(self.locators.FIRST_NAME).send_keys(first_name)
+        self.element_is_visible(self.locators.SUBMIT_BTN).click()
+        return first_name
