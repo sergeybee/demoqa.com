@@ -47,10 +47,14 @@ class WebTableLocators:
     SEARCH_FIELD = (By.XPATH, "//input[@id='searchBox']")
 
     # check new person
-    PERSON_LIST = (By.CSS_SELECTOR, "div[class='rt-tbody'] .rt-tr-group")
+    PERSON_LIST = (By.CSS_SELECTOR, "div[class='rt-tr-group']")
 
     # edit person
     EDIT_RECORD_BUTTONT = (By.XPATH, "//span[@title='Edit']")
 
     # delete person
     DELETE_RECORD_BUTTON = (By.XPATH, "//span[@title='Delete']")
+    DELETE_TEXT = (By.CSS_SELECTOR, "div[class ='rt-noData']")
+
+    # change count row
+    CHANGE_VALUE = (By.CSS_SELECTOR, "select[aria-label ='rows per page']")
