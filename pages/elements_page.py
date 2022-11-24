@@ -1,4 +1,5 @@
 import random
+import time
 
 from selenium.webdriver.common.by import By
 
@@ -118,6 +119,7 @@ class WebTablePage(BasePage):
         return data
 
     def search_person(self, key_word):
+        self.element_is_visible(self.locators.SEARCH_FIELD).clear()
         self.element_is_visible(self.locators.SEARCH_FIELD).send_keys(key_word)
 
     def check_search_person(self):
@@ -132,3 +134,9 @@ class WebTablePage(BasePage):
         self.element_is_visible(self.locators.FIRST_NAME).send_keys(first_name)
         self.element_is_visible(self.locators.SUBMIT_BTN).click()
         return first_name
+
+    def click_delete_person_info(self):
+        self.element_is_visible(self.locators.DELETE_RECORD_BUTTON).click()
+
+    def check_delete_person_info(self):
+        return self.element_is_visible(self.locators.DELETE_TEXT).text
