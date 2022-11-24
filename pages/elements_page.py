@@ -114,7 +114,6 @@ class WebTablePage(BasePage):
         data = []
         persons = self.elements_are_visible(self.locators.PERSON_LIST)
         for person in persons:
-
             data.append(person.text.splitlines())
         return data
 
@@ -122,8 +121,7 @@ class WebTablePage(BasePage):
         self.element_is_visible(self.locators.SEARCH_FIELD).send_keys(key_word)
 
     def check_search_person(self):
-        delete_button = self.element_is_present(self.locators.DELETE_RECORD_BUTTON)
-        row = delete_button.find_element_by_xpath(self.locators.ROW_PARENT)
+        row = self.elements_are_visible(self.locators.PERSON_LIST)[0]
         return row.text.splitlines()
 
     def update_person_info(self):
