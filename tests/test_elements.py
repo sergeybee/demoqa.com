@@ -1,5 +1,6 @@
 import random
 import time
+
 from config import URL_PAGE_TEXT_BOX, URL_PAGE_CHECK_BOX, URL_PAGE_RADIO_BUTTON, URL_WEB_TABLE_PAGE
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage
 
@@ -57,4 +58,13 @@ class TestElements:
             web_table_page.search_person(keyword_search)
             search_result = web_table_page.check_search_person()
             assert keyword_search in search_result, 'Искомая персона не найдена в таблице'
+
+        def test_web_table_update_person_info(self, driver):
+            web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
+            web_table_page.open()
+            web_table_page.add_new_person()
+            update_data = web_table_page.update_person_info()
+            web_table_page.search_person(update_data)
+            search_result = web_table_page.check_search_person()
+            assert update_data in search_result, "Обновленная информация о персоне, не найдена"
 
