@@ -68,3 +68,11 @@ class TestElements:
             search_result = web_table_page.check_search_person()
             assert update_data in search_result, "Обновленная информация о персоне, не найдена"
 
+        def test_web_table_delete_person_info(self, driver):
+            web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
+            web_table_page.open()
+            person = web_table_page.add_new_person()[0]
+            web_table_page.search_person(person)
+            web_table_page.click_delete_person_info()
+            result_check = web_table_page.check_delete_person_info()
+            assert result_check == "No rows found", 'Персона не удалена'
