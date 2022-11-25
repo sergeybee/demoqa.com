@@ -76,3 +76,9 @@ class TestElements:
             web_table_page.click_delete_person_info()
             result_check = web_table_page.check_delete_person_info()
             assert result_check == "No rows found", 'Персона не удалена'
+
+        def test_web_table_change_rows(self, driver):
+            web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
+            web_table_page.open()
+            result_change_rows = web_table_page.change_count_row()
+            assert result_change_rows == [5, 10, 20, 25, 50, 100], "Кол-во строк в таблице не совпадают с выбранными или некорректны"
