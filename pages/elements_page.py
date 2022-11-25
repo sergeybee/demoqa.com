@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import Select
 
 from generator.generator import generated_person
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators, \
-    WebTableLocators
+    WebTableLocators, ButtonLocators
 from pages.base_page import BasePage
 
 
@@ -155,3 +155,24 @@ class WebTablePage(BasePage):
             self.element_is_visible((By.CSS_SELECTOR, f'option[value="{rows}"]')).click()
             rows_data.append(self.check_count_rows())
         return rows_data
+
+
+class ButtonPage(BasePage):
+    locators = ButtonLocators()
+
+    def check_clicked_btn(self, element):
+        return self.element_is_visible(element).text
+
+    def double_click_on_btn(self):
+        btn = self.element_is_visible(self.locators.DOUBLE_CLICK_BTN)
+        self.action_double_click(btn)
+        return self.check_clicked_btn(self.locators.DOUBLE_CLICK_BTN_TEXT)
+
+    def right_click_on_btn(self):
+        btn = self.element_is_visible(self.locators.RIGHT_CLICK_BTN)
+        self.action_right_click(btn)
+        return self.check_clicked_btn(self.locators.RIGHT_CLICK_BTN_TEXT)
+
+    def click_on_btn_click_me(self):
+        self.element_is_visible(self.locators.CLICK_ME_BTN).click()
+        return self.check_clicked_btn(self.locators.CLICK_ME_BTN_TEXT)
