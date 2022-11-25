@@ -2,6 +2,7 @@ import random
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 from generator.generator import generated_person
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators, \
@@ -140,3 +141,17 @@ class WebTablePage(BasePage):
 
     def check_delete_person_info(self):
         return self.element_is_visible(self.locators.DELETE_TEXT).text
+
+    def check_count_rows(self):
+        return self.element_is_visible(self.locators.PERSON_LIST)
+
+    def change_count_row(self):
+        row_count = [5, 10, 20, 25, 50, 100]
+        rows_data = []
+        for rows in row_count:
+            row_value = self.element_is_present(self.locators.CHANGE_VALUE)
+            self.go_to_element(self.locators.NEXT_BTN)
+            row_value.click()
+            self.element_is_visible((By.CSS_SELECTOR, f'option[value="{rows}"]')).click()
+            rows_data.append(self.check_count_rows())
+        return rows_data
