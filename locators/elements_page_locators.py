@@ -58,3 +58,13 @@ class WebTableLocators:
 
     # change count row
     CHANGE_VALUE = (By.CSS_SELECTOR, "select[aria-label ='rows per page']")
+
+
+class ButtonLocators:
+    DOUBLE_CLICK_BTN = (By.CSS_SELECTOR, "button[id='doubleClickBtn']")
+    RIGHT_CLICK_BTN = (By.CSS_SELECTOR, "button[id='rightClickBtn']")
+    CLICK_ME_BTN = (By.XPATH, "//button[text()='Click Me']")
+
+    DOUBLE_CLICK_BTN_TEXT = (By.CSS_SELECTOR, "p[id='doubleClickMessage']")
+    RIGHT_CLICK_BTN_TEXT = (By.CSS_SELECTOR, "p[id='rightClickMessage']")
+    CLICK_ME_BTN_TEXT = (By.CSS_SELECTOR, "p[id='dynamicClickMessage']")
