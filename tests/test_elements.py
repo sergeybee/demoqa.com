@@ -2,7 +2,7 @@ import random
 import time
 
 from config import *
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage
 
 
 class TestElements:
@@ -81,7 +81,8 @@ class TestElements:
             web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
             web_table_page.open()
             result_change_rows = web_table_page.change_count_row()
-            assert result_change_rows == [5, 10, 20, 25, 50, 100], "Кол-во строк в таблице не совпадают с выбранными или некорректны"
+            assert result_change_rows == [5, 10, 20, 25, 50,
+                                          100], "Кол-во строк в таблице не совпадают с выбранными или некорректны"
 
     class TestButtonsPage:
         def test_double_click_on_btn(self, driver):
@@ -101,3 +102,40 @@ class TestElements:
             buttons_page.open()
             result = buttons_page.click_on_btn_click_me()
             assert result == "You have done a dynamic click", "Ожидаемое сообщение не верное"
+
+    class TestLinksPage:
+
+        def test_simple_link_open_new_tab(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.should_be_open_simple_link_in_new_tab()
+
+        def test_dinamyc_link_open_to_new_tab(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.should_be_open_dinamyc_link_in_new_tab()
+
+        def test_status_created_link(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.check_status_created_link()
+
+        def test_status_no_content_link(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.check_status_no_content_link()
+
+        def test_status_moved_link(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.check_status_moved_link()
+
+        def test_status_bad_request_link(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.check_status_bad_request_link()
+
+        def test_status_unauthorized_link(self, driver):
+            link_page = LinksPage(driver, URL_LINKS_PAGE)
+            link_page.open()
+            link_page.check_status_unauthorized_link()
