@@ -68,3 +68,15 @@ class ButtonLocators:
     DOUBLE_CLICK_BTN_TEXT = (By.CSS_SELECTOR, "p[id='doubleClickMessage']")
     RIGHT_CLICK_BTN_TEXT = (By.CSS_SELECTOR, "p[id='rightClickMessage']")
     CLICK_ME_BTN_TEXT = (By.CSS_SELECTOR, "p[id='dynamicClickMessage']")
+
+
+class LinksPageLocators:
+    SIMPLE_LINK = (By.XPATH, "//a[@id='simpleLink']")
+    DYNAMIC_LINK = (By.XPATH, "//a[@id='dynamicLink']")
+    CREATED_LINK = (By.XPATH, "//a[@id='created']")
+    NO_CONTENT_LINK = (By.XPATH, "//a[@id='no-content']")
+    MOVED_LINK = (By.XPATH, "//a[@id='moved']")
+    BAD_REQUEST_LINK = (By.XPATH, "//a[@id='bad-request']")
+    UNAUTHORIZED_LINK = (By.XPATH, "//a[@id='unauthorized']")
+    FORBIDDEN_LINK = (By.XPATH, "//a[@id='forbidden']")
+    INVALID_URL_LINK = (By.XPATH, "//a[@id='invalid-url']")
