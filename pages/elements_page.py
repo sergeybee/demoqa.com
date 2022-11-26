@@ -1,12 +1,11 @@
 import random
 import time
+import requests
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 
 from generator.generator import generated_person
-from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonLocators, \
-    WebTableLocators, ButtonLocators
+from locators.elements_page_locators import *
 from pages.base_page import BasePage
 
 
@@ -150,7 +149,7 @@ class WebTablePage(BasePage):
         rows_data = []
         for rows in row_count:
             row_value = self.element_is_present(self.locators.CHANGE_VALUE)
-            self.go_to_element(self.locators.NEXT_BTN)
+            self.go_to_element(self.locators.CHANGE_VALUE)
             row_value.click()
             self.element_is_visible((By.CSS_SELECTOR, f'option[value="{rows}"]')).click()
             rows_data.append(self.check_count_rows())
@@ -176,3 +175,69 @@ class ButtonPage(BasePage):
     def click_on_btn_click_me(self):
         self.element_is_visible(self.locators.CLICK_ME_BTN).click()
         return self.check_clicked_btn(self.locators.CLICK_ME_BTN_TEXT)
+
+
+class LinksPage(BasePage):
+    locators = LinksLocators()
+
+    def should_be_open_simple_link_in_new_tab(self):
+        """ Проверяем, что открывается страница сайта "https://demoqa.com/" """
+        link_home = self.element_is_visible(self.locators.SIMPLE_LINK)
+        href = link_home.get_attribute('href')
+        link_home.click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        time.sleep(3)
+        url = self.driver.current_url
+        assert href == url, "Исходный адрес не совпадает с адресом открытый в новой вкладке"
+
+    def should_be_open_dinamyc_link_in_new_tab(self):
+        """ Проверяем, что открывается страница сайта "https://demoqa.com/" """
+        link_home = self.element_is_visible(self.locators.DYNAMIC_LINK)
+        href = link_home.get_attribute('href')
+        link_home.click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        time.sleep(3)
+        url = self.driver.current_url
+        assert href == url, "Исходный адрес не совпадает с адресом открытый в новой вкладке"
+
+    def check_status_created_link(self):
+        create_link = self.element_is_visible(self.locators.CREATED_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/created')
+        assert r.status_code == 201, "    "
+
+    def check_status_no_content_link(self):
+        create_link = self.element_is_visible(self.locators.NO_CONTENT_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/no-content')
+        assert r.status_code == 204, "    "
+
+    def check_status_moved_link(self):
+        create_link = self.element_is_visible(self.locators.MOVED_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/moved')
+        assert r.status_code == 301, "    "
+
+    def check_status_bad_request_link(self):
+        create_link = self.element_is_visible(self.locators.BAD_REQUEST_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/bad-request')
+        assert r.status_code == 400, "    "
+
+    def check_status_unauthorized_link(self):
+        create_link = self.element_is_visible(self.locators.UNAUTHORIZED_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/unauthorized')
+        assert r.status_code == 401, "    "
+
+    def check_status_forbidden_link(self):
+        create_link = self.element_is_visible(self.locators.FORBIDDEN_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/forbidden')
+        assert r.status_code == 403, "    "
+
+    def check_status_invalid_url_link(self):
+        create_link = self.element_is_visible(self.locators.INVALID_URL_LINK)
+        create_link.click()
+        r = requests.get('https://demoqa.com/invalid-url')
+        assert r.status_code == 404, "    "
