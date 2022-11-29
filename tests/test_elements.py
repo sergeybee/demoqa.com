@@ -2,7 +2,8 @@ import random
 import time
 
 from config import *
-from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage, \
+    DownloadUploadPage
 
 
 class TestElements:
@@ -139,3 +140,18 @@ class TestElements:
             link_page = LinksPage(driver, URL_LINKS_PAGE)
             link_page.open()
             link_page.check_status_unauthorized_link()
+
+    class TestDownloadUploadPage:
+
+        def test_download_file(self, driver):
+            down_up_load_page = DownloadUploadPage(driver, URL_DOWNLOAD_UPLOAD_PAGE)
+            down_up_load_page.open()
+            check = down_up_load_page.download_file()
+            assert check is True,  "Файл не был скачан / The file has not been downloaded"
+
+        def test_upload_file(self, driver):
+            down_up_load_page = DownloadUploadPage(driver, URL_DOWNLOAD_UPLOAD_PAGE)
+            down_up_load_page.open()
+            file_name, text_path = down_up_load_page.upload_file()
+            assert file_name == text_path, "Файл не был загружен / The file has not been uploaded"
+
