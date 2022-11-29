@@ -80,3 +80,10 @@ class LinksPageLocators:
     UNAUTHORIZED_LINK = (By.XPATH, "//a[@id='unauthorized']")
     FORBIDDEN_LINK = (By.XPATH, "//a[@id='forbidden']")
     INVALID_URL_LINK = (By.XPATH, "//a[@id='invalid-url']")
+
+
+class DownloadUploadPageLocators:
+    DOWNLOAD_FILE_BTN = (By.XPATH, "//a[@id='downloadButton']")
+
+    UPLOAD_FILE_BTN = (By.XPATH, "//input[@type='file']")
+    UPLOADED_FILE_NAME_TEXT = (By.XPATH, "//p[@id='uploadedFilePath']")
