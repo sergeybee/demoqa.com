@@ -19,3 +19,12 @@ def generated_person():
         current_address=fake.address(),
         permanent_address=fake.address()
     )
+
+
+def generated_file():
+    path = f"/home/user/py/myapp/demoqa.com/file{random.randint(0, 999)}.txt"
+
+    file = open(path, 'w+')
+    file.write(f'Hello by this number {random.randint(0, 999)}')
+    file.close()
+    return file.name, path
