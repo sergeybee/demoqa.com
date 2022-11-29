@@ -3,6 +3,7 @@ import os
 import random
 import time
 import requests
+from selenium.common import TimeoutException
 
 from selenium.webdriver.common.by import By
 
@@ -269,3 +270,28 @@ class DownloadUploadPage(BasePage):
         replace_path = text.split("\\")[-1]
         os.remove(path)
         return f_name, replace_path
+
+
+class DynamicPropertiesPage(BasePage):
+    locators = DynamicPropertiesPageLocators()
+
+    def check_clickable_enable_btn(self):
+        try:
+            self.element_is_clickable(self.locators.ENABLE_BTN)
+        except TimeoutException:
+            return False
+        return True
+
+    def change_color_text_btn(self):
+        text_color_btn = self.element_is_present(self.locators.COLOR_TEXT_BTN)
+        before_color = text_color_btn.value_of_css_property('color')
+        time.sleep(8)
+        after_color = text_color_btn.value_of_css_property('color')
+        assert before_color != after_color, "Цвет текста кнопки должен не совпадать"
+
+    def check_appear_of_button(self):
+        try:
+            self.element_is_clickable(self.locators.VISIBLE_AFTER_FIVE_SEC_BTN)
+        except TimeoutException:
+            return False
+        return True
