@@ -3,7 +3,7 @@ import time
 
 from config import *
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonPage, LinksPage, \
-    DownloadUploadPage
+    DownloadUploadPage, DynamicPropertiesPage
 
 
 class TestElements:
@@ -154,4 +154,24 @@ class TestElements:
             down_up_load_page.open()
             file_name, text_path = down_up_load_page.upload_file()
             assert file_name == text_path, "Файл не был загружен / The file has not been uploaded"
+
+    class TestDynamicPropertiesPage:
+        def test_clickable_enable_btn(self, driver):
+            dynamic_prop_page = DynamicPropertiesPage(driver, URL_DYNAMIC_PROPERTIES_PAGE)
+            dynamic_prop_page.open()
+            enable = dynamic_prop_page.check_clickable_enable_btn()
+            assert enable is True
+
+        def test_change_color_text_btn(self, driver):
+            dynamic_prop_page = DynamicPropertiesPage(driver, URL_DYNAMIC_PROPERTIES_PAGE)
+            dynamic_prop_page.open()
+            dynamic_prop_page.change_color_text_btn()
+
+        def test_appear_of_btn(self, driver):
+            dynamic_prop_page = DynamicPropertiesPage(driver, URL_DYNAMIC_PROPERTIES_PAGE)
+            dynamic_prop_page.open()
+            appear = dynamic_prop_page.check_appear_of_button()
+            assert appear is True
+
+
 
