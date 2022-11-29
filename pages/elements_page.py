@@ -1,10 +1,12 @@
+import base64
+import os
 import random
 import time
 import requests
 
 from selenium.webdriver.common.by import By
 
-from generator.generator import generated_person
+from generator.generator import generated_person, generated_file
 from locators.elements_page_locators import *
 from pages.base_page import BasePage
 
@@ -178,7 +180,7 @@ class ButtonPage(BasePage):
 
 
 class LinksPage(BasePage):
-    locators = LinksLocators()
+    locators = LinksPageLocators()
 
     def should_be_open_simple_link_in_new_tab(self):
         """ Проверяем, что открывается страница сайта "https://demoqa.com/" """
@@ -241,3 +243,29 @@ class LinksPage(BasePage):
         create_link.click()
         r = requests.get('https://demoqa.com/invalid-url')
         assert r.status_code == 404, "    "
+
+
+class DownloadUploadPage(BasePage):
+    locators = DownloadUploadPageLocators()
+
+    def download_file(self):
+        link = self.element_is_present(self.locators.DOWNLOAD_FILE_BTN).get_attribute('href').split(',')
+        link_decode = base64.b64decode(link[1])
+
+        path_file = f"/home/user/py/myapp/demoqa.com/file{random.randint(0, 999)}.jpeg"
+
+        with open(path_file, 'wb+') as f:
+            f.write(link_decode)
+            check_file = os.path.exists(path_file)
+            f.close()
+            os.remove(path_file)
+        return check_file
+
+    def upload_file(self):
+        file_name, path = generated_file()
+        self.element_is_present(self.locators.UPLOAD_FILE_BTN).send_keys(path)
+        text = self.element_is_present(self.locators.UPLOADED_FILE_NAME_TEXT).text
+        f_name = file_name.split("/")[-1]
+        replace_path = text.split("\\")[-1]
+        os.remove(path)
+        return f_name, replace_path
