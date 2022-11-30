@@ -3,9 +3,8 @@ import os
 import random
 import time
 import requests
-from selenium.common import TimeoutException
 
-from selenium.webdriver.common.by import By
+from selenium.common import TimeoutException
 
 from generator.generator import generated_person, generated_file
 from locators.elements_page_locators import *
@@ -76,7 +75,7 @@ class CheckBoxPage(BasePage):
 
 
 class RadioButtonPage(BasePage):
-    locators = RadioButtonLocators()
+    locators = RadioButtonPageLocators()
 
     def clicked_on_the_radio_btn(self, choice):
         dict_radio_btn = {
@@ -91,7 +90,7 @@ class RadioButtonPage(BasePage):
 
 
 class WebTablePage(BasePage):
-    locators = WebTableLocators()
+    locators = WebTablePageLocators()
 
     def add_new_person(self):
         person_add = next(generated_person())
@@ -160,7 +159,7 @@ class WebTablePage(BasePage):
 
 
 class ButtonPage(BasePage):
-    locators = ButtonLocators()
+    locators = ButtonPageLocators()
 
     def check_clicked_btn(self, element):
         return self.element_is_visible(element).text
