@@ -16,6 +16,7 @@ class TextBoxPageLocators:
     CREATED_PERMANENT_ADDRESS = (By.CSS_SELECTOR, "p[id='permanentAddress']")
 
 
+
 class CheckBoxPageLocators:
     EXPAND_BUTTON = (By.CSS_SELECTOR, "button[title='Expand all']")
     ITEM_LIST = (By.CSS_SELECTOR, "span[class='rct-title']")
@@ -24,7 +25,7 @@ class CheckBoxPageLocators:
     OUTPUT_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
 
 
-class RadioButtonLocators:
+class RadioButtonPageLocators:
     YES_RADIO = (By.CSS_SELECTOR, "label[class*='custom-control'][for='yesRadio']")
     IMPRESSIVE_RADIO = (By.CSS_SELECTOR, "label[class*='custom-control'][for='impressiveRadio']")
     NO_RADIO = (By.CSS_SELECTOR, "label[class*='custom-control'][for='noRadio']")
@@ -32,7 +33,7 @@ class RadioButtonLocators:
     OUTPUT_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
 
 
-class WebTableLocators:
+class WebTablePageLocators:
     # add new person
     ADD_BTN_PERSON = (By.XPATH, "//button[@id='addNewRecordButton']")
     FIRST_NAME = (By.XPATH, "//input[@id='firstName']")
@@ -60,7 +61,7 @@ class WebTableLocators:
     CHANGE_VALUE = (By.CSS_SELECTOR, "select[aria-label ='rows per page']")
 
 
-class ButtonLocators:
+class ButtonPageLocators:
     DOUBLE_CLICK_BTN = (By.CSS_SELECTOR, "button[id='doubleClickBtn']")
     RIGHT_CLICK_BTN = (By.CSS_SELECTOR, "button[id='rightClickBtn']")
     CLICK_ME_BTN = (By.XPATH, "//button[text()='Click Me']")
