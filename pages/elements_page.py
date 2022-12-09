@@ -30,6 +30,8 @@ class TextBoxPage(BasePage):
         return full_name, email, current_adress, permanent_adress
 
     def check_field_form(self):
+        """ Метод получает текстовые данные и возвращает их """
+
         full_name = self.element_is_visible(self.locators.CREATED_FULL_NAME).text.split(':')[1]
         email = self.element_is_visible(self.locators.CREATED_EMAIL).text.split(':')[1]
         current_adress = self.element_is_visible(self.locators.CREATED_CURRENT_ADDRESS).text.split(':')[1]
