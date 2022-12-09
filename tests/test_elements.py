@@ -7,7 +7,15 @@ from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebT
 
 
 class TestElements:
+    """ Тестовый класс TestElements """
+
     class TestTextBox:
+        """
+        Тесты для текстовых (TextBox) полей формы на странице TextBox
+
+        URL_PAGE_TEXT_BOX - Урл страницы
+        """
+
         def test_text_box(self, driver):
             text_box_page = TextBoxPage(driver, URL_PAGE_TEXT_BOX)
             text_box_page.open()
@@ -20,6 +28,12 @@ class TestElements:
             assert permanent_address == output_per_addr, "the permanent address does not match"
 
     class TestCheckBox:
+        """
+        Тесты для чек-боксов (CheckBox) на странице CheckBox
+
+        URL_PAGE_CHECK_BOX - Урл страницы
+        """
+
         def test_check_box(self, driver):
             check_box_page = CheckBoxPage(driver, URL_PAGE_CHECK_BOX)
             check_box_page.open()
@@ -30,6 +44,12 @@ class TestElements:
             assert input_checkbox == output_result, 'Данные не совпадают'
 
     class TestRadioButton:
+        """
+        Тесты для радио-батонов (RadioButton) на странице RadioButton
+
+        URL_PAGE_RADIO_BUTTON - Урл страницы
+        """
+
         def test_radio_button(self, driver):
             radio_btn_page = RadioButtonPage(driver, URL_PAGE_RADIO_BUTTON)
             radio_btn_page.open()
@@ -45,6 +65,12 @@ class TestElements:
             time.sleep(3)
 
     class TestWebTables:
+        """
+        Тесты на добавление, редактирование, поиск, удаление человека в таблице на странице WebTables
+
+        URL_WEB_TABLE_PAGE - Урл страницы
+        """
+
         def test_web_table_add_person(self, driver):
             web_table_page = WebTablePage(driver, URL_WEB_TABLE_PAGE)
             web_table_page.open()
@@ -86,6 +112,12 @@ class TestElements:
                                           100], "Кол-во строк в таблице не совпадают с выбранными или некорректны"
 
     class TestButtonsPage:
+        """
+        Тесты для кнопок на странице ButtonsPage
+
+        URL_BUTTONS_PAGE - Урл страницы
+        """
+
         def test_double_click_on_btn(self, driver):
             buttons_page = ButtonPage(driver, URL_BUTTONS_PAGE)
             buttons_page.open()
@@ -105,6 +137,11 @@ class TestElements:
             assert result == "You have done a dynamic click", "Ожидаемое сообщение не верное"
 
     class TestLinksPage:
+        """
+        Тесты для ссылок на странице LinksPage
+
+        URL_LINKS_PAGE - Урл страницы
+        """
 
         def test_simple_link_open_new_tab(self, driver):
             link_page = LinksPage(driver, URL_LINKS_PAGE)
@@ -142,6 +179,11 @@ class TestElements:
             link_page.check_status_unauthorized_link()
 
     class TestDownloadUploadPage:
+        """
+        Тесты для скачивания и загрузки файлов на странице DownloadUploadPage
+
+        URL_DOWNLOAD_UPLOAD_PAGE - Урл страницы
+        """
 
         def test_download_file(self, driver):
             down_up_load_page = DownloadUploadPage(driver, URL_DOWNLOAD_UPLOAD_PAGE)
@@ -156,6 +198,12 @@ class TestElements:
             assert file_name == text_path, "Файл не был загружен / The file has not been uploaded"
 
     class TestDynamicPropertiesPage:
+        """
+        Тесты для динамически изменяемых свойств текста, кнопок на странице DynamicPropertiesPage
+
+        URL_DYNAMIC_PROPERTIES_PAGE - Урл страницы
+        """
+
         def test_clickable_enable_btn(self, driver):
             dynamic_prop_page = DynamicPropertiesPage(driver, URL_DYNAMIC_PROPERTIES_PAGE)
             dynamic_prop_page.open()
