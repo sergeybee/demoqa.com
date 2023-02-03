@@ -9,4 +9,4 @@ URL_DOWNLOAD_UPLOAD_PAGE = "https://demoqa.com/upload-download"
 URL_DYNAMIC_PROPERTIES_PAGE = "https://demoqa.com/dynamic-properties"
 
 # Локаторы для Practice Form Page
-URL_REGISTRATION_FORM_PAGE = "https://demoqa.com/automation-practice-form"
+URL_FORM_PAGE = "https://demoqa.com/automation-practice-form"

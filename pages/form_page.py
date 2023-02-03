@@ -36,7 +36,6 @@ class RegistrationStudentForm(BasePage):
         self.element_is_present(self.locators.UPLOAD_PICTURE_FILE).send_keys(path)
         text = self.element_is_present(self.locators.UPLOAD_PICTURE_FILE).text
         f_name = file_name.split("/")[-1]
-        # replace_path = text.split("\\")[-1]
         os.remove(path)
         self.element_is_visible(self.locators.CURRENT_ADDRESS).send_keys(person_data.current_address)
         self.element_is_visible(self.locators.STATE_INPUT).send_keys(state)
